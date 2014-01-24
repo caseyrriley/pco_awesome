@@ -1,0 +1,35 @@
+<h1> Most Awesome Person </h1>
+<h2><%= Person.first[:name]%></h2>
+<br>
+
+<h1>Top 10 Awesome People</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Awesomeness Level(0-100)</th>
+    
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @people.each do |person| %>
+
+      <tr>
+      
+        <td><%= person.name %></td>
+        <td><%= person.awesomeness %></td>
+        <td><%= link_to 'Edit Awesomeness', edit_person_path(person) %></td>
+        <td><%= link_to 'Revoke Awesomeness', person, method: :delete, data: { confirm: 'This person is pretty awesome are you sure' } %></td>
+      </tr>   <% end %>
+  </tbody>
+</table>
+<br>
+<h3>Average Person Awesomeness
+<%= Person.average('awesomeness') %></h3>
+
+<br>
+
+<%= link_to 'New Person', new_person_path %>
+
